@@ -150,8 +150,8 @@ let data = (state = initialState.data, action) => {
       });
 
     case FETCH_CAMPAIGN_REQUEST_FAILURE:
+    case FETCH_CAMPAIGNS_REQUEST_FAILURE:
     case SAVE_CAMPAIGN_REQUEST_FAILURE:
-    case SAVE_USER_REQUEST_FAILURE:
     case DELETE_CAMPAIGN_REQUEST_FAILURE:
       return Object.assign({}, state, {
         requestFailed: true,

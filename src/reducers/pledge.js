@@ -122,39 +122,36 @@ const initialState = {
   },
 };
 
-// let data = (state = initialState.data, action) => {
-//   switch (action.type) {
-//     case FETCH_CAMPAIGNS_REQUEST_SUCCESS:
-//       return Object.assign({}, state, {
-//         campaigns: action.data.campaigns || [],
-//         requestFailed: false,
-//       });
-//
-//     case FETCH_CAMPAIGN_REQUEST_SUCCESS:
-//       return Object.assign({}, state, {
-//         campaign: action.data.campaign,
-//         requestFailed: false,
-//       });
-//
-//     case SAVE_CAMPAIGN_REQUEST_SUCCESS:
-//       return Object.assign({}, state, {
-//         campaigns: [...state.campaigns, ...action.data.campaign],
-//         requestFailed: false,
-//       });
-//
-//     case DELETE_CAMPAIGN_REQUEST_SUCCESS:
-//     let campaigns = state.campaigns.filter(campaign => campaign.id !== action.campaignId);
-//       return Object.assign({}, state, {
-//         campaigns,
-//         requestFailed: false
-//       });
-//
-//     case FETCH_CAMPAIGN_REQUEST_FAILURE:
-//     case SAVE_CAMPAIGN_REQUEST_FAILURE:
-//     case SAVE_USER_REQUEST_FAILURE:
-//     case DELETE_CAMPAIGN_REQUEST_FAILURE:
-//       return Object.assign({}, state, {
-//         requestFailed: true,
-//       });
-//   }
-// };
+let data = (state = initialState.data, action) => {
+  switch (action.type) {
+    case FETCH_PLEDGES_BY_CAMPAIGN_REQUEST_SUCCESS:
+    case FETCH_PLEDGES_BY_USER_REQUEST_SUCCESS:
+      return Object.assign({}, state, {
+        pledges: action.data.pledges || [],
+        requestFailed: false,
+      });
+
+    case SAVE_PLEDGE_REQUEST_SUCCESS:
+      return Object.assign({}, state, {
+        pledges: [...state.pledges, ...action.data.pledge],
+        requestFailed: false,
+      });
+
+    case DELETE_PLEDGE_REQUEST_SUCCESS:
+      let pledges = state.pledges.filter(
+        pledge => pledge.id !== action.pledgeId,
+      );
+      return Object.assign({}, state, {
+        pledges,
+        requestFailed: false,
+      });
+
+    case FETCH_PLEDGES_BY_CAMPAIGN_REQUEST_FAILURE:
+    case FETCH_PLEDGES_BY_USER_REQUEST_FAILURE:
+    case SAVE_PLEDGE_REQUEST_FAILURE:
+    case DELETE_PLEDGE_REQUEST_FAILURE:
+      return Object.assign({}, state, {
+        requestFailed: true,
+      });
+  }
+};
